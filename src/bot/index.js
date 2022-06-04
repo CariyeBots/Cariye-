@@ -23,10 +23,10 @@ require('@gcommands/plugin-votes').default({
 Command.setDefaults({ cooldown: '5s' });
 
 Component.setDefaults({
-	onError: (ctx, error) => {
+  onError: (ctx, error) => {
     console.log(error)
-		return ctx.reply('Oops! Something went wrong')
-	}
+    return ctx.reply('Oops! Something went wrong')
+  }
 });
 
 Logger.setLevel(Logger.TRACE);
@@ -35,13 +35,13 @@ const client = new GClient({
   intents: [
     Intents.FLAGS.GUILDS,
     Intents.FLAGS.GUILD_VOICE_STATES,
-		Intents.FLAGS.GUILD_BANS,
-		Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS,
+    Intents.FLAGS.GUILD_BANS,
+    Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS,
     Intents.FLAGS.GUILD_MEMBERS,
     Intents.FLAGS.GUILD_MESSAGES,
     Intents.FLAGS.GUILD_PRESENCES,
     Intents.FLAGS.DIRECT_MESSAGES,
-		Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+    Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
     Intents.FLAGS.GUILD_INVITES,
     Intents.FLAGS.GUILD_INTEGRATIONS,
     Intents.FLAGS.GUILD_PRESENCES,
@@ -51,10 +51,10 @@ const client = new GClient({
     join(__dirname, 'events')
   ],
   database: new MongoDBProvider(process.env.mongodb_uri),
-	shards: "auto",
-	messageSupport: true,
-	messagePrefix: '!',
-	partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
+  shards: "auto",
+  messageSupport: true,
+  messagePrefix: '!',
+  partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
 });
 
 client.queue = new Collection();
