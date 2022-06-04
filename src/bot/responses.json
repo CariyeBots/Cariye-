@@ -3,210 +3,210 @@
     "ERROR": "Error :(",
     "COOLDOWN": "You need to wait {duration}",
     "NOT_FOUND": "Looks like that command went to play hide and seek!",
-		"ARGUMENT_REQUIRED": "{user}, please define argument {name}, type: `{type}`",
-  	"ARGUMENT_TIME": "{user}, Please re-run the command."
+    "ARGUMENT_REQUIRED": "{user}, please define argument {name}, type: `{type}`",
+    "ARGUMENT_TIME": "{user}, Please re-run the command."
   },
   "en-US": {
     "ERROR": "Error :(",
     "COOLDOWN": "You need to wait {duration}",
     "NOT_FOUND": "Looks like that command went to play hide and seek!",
-		"ARGUMENT_REQUIRED": "{user}, please define argument {name}, type: `{type}`",
-  	"ARGUMENT_TIME": "{user}, Please re-run the command."
+    "ARGUMENT_REQUIRED": "{user}, please define argument {name}, type: `{type}`",
+    "ARGUMENT_TIME": "{user}, Please re-run the command."
   },
   "da": {
-		"ERROR": "Fejl :(",
+    "ERROR": "Fejl :(",
     "COOLDOWN": "Du skal vente {duration}",
     "NOT_FOUND": "Udefineret kommando",
-		"ARGUMENT_REQUIRED": "{user}, definer venligst argument {name}, skriv: `{type}`",
-  	"ARGUMENT_TIME": "{user}, Kør venligst kommandoen igen."
+    "ARGUMENT_REQUIRED": "{user}, definer venligst argument {name}, skriv: `{type}`",
+    "ARGUMENT_TIME": "{user}, Kør venligst kommandoen igen."
   },
   "de": {
-		"ERROR": "Fehler :(",
+    "ERROR": "Fehler :(",
     "COOLDOWN": "Du müssen {duration} warten",
     "NOT_FOUND": "Undefinierter Befehl",
-		"ARGUMENT_REQUIRED": "{user}, bitte definieren Sie Argument {name}, Typ: `{type}`",
-  	"ARGUMENT_TIME": "{user}, bitte führen Sie den Befehl erneut aus."
+    "ARGUMENT_REQUIRED": "{user}, bitte definieren Sie Argument {name}, Typ: `{type}`",
+    "ARGUMENT_TIME": "{user}, bitte führen Sie den Befehl erneut aus."
   },
   "es-ES": {
-		"ERROR": "Error :(",
+    "ERROR": "Error :(",
     "COOLDOWN": "Tienes que esperar {duration}",
     "NOT_FOUND": "Comando indefinido",
-		"ARGUMENT_REQUIRED": "{user}, defina el argumento {name}, escriba: `{type}`",
-  	"ARGUMENT_TIME": "{user}, vuelva a ejecutar el comando."
+    "ARGUMENT_REQUIRED": "{user}, defina el argumento {name}, escriba: `{type}`",
+    "ARGUMENT_TIME": "{user}, vuelva a ejecutar el comando."
   },
   "fr": {
-		"ERROR": "Erreur :(",
+    "ERROR": "Erreur :(",
     "COOLDOWN": "Vous devez attendre {duration}",
     "NOT_FOUND": "Commande non définie",
-		"ARGUMENT_REQUIRED": "{user}, veuillez définir l'argument {name}, tapez : `{type}`",
-  	"ARGUMENT_TIME": "{user}, veuillez relancer la commande."
+    "ARGUMENT_REQUIRED": "{user}, veuillez définir l'argument {name}, tapez : `{type}`",
+    "ARGUMENT_TIME": "{user}, veuillez relancer la commande."
   },
   "hr": {
-		"ERROR": "Greška :(",
+    "ERROR": "Greška :(",
     "COOLDOWN": "Morate pričekati {duration}",
     "NOT_FOUND": "Nedefinirana naredba",
-		"ARGUMENT_REQUIRED": "{user}, definirajte argument {name}, upišite: `{type}`",
-  	"ARGUMENT_TIME": "{user}, ponovno pokrenite naredbu."
+    "ARGUMENT_REQUIRED": "{user}, definirajte argument {name}, upišite: `{type}`",
+    "ARGUMENT_TIME": "{user}, ponovno pokrenite naredbu."
   },
   "it": {
     "ERROR": "Errore :(",
     "COOLDOWN": "Devi aspettare {duration}",
     "NOT_FOUND": "Comando indefinito",
-		"ARGUMENT_REQUIRED": "{user}, definisci l'argomento {name}, digita: `{type}`",
-  	"ARGUMENT_TIME": "{user}, esegui nuovamente il comando."
+    "ARGUMENT_REQUIRED": "{user}, definisci l'argomento {name}, digita: `{type}`",
+    "ARGUMENT_TIME": "{user}, esegui nuovamente il comando."
   },
   "lt": {
-		"ERROR": "Klaida :(",
+    "ERROR": "Klaida :(",
     "COOLDOWN": "Jums reikia palaukti {duration}",
     "NOT_FOUND": "Neapibrėžta komanda",
-		"ARGUMENT_REQUIRED": "{user}, nurodykite argumentą {name}, įveskite: `{type}`",
-  	"ARGUMENT_TIME": "{user}, iš naujo paleiskite komandą."
+    "ARGUMENT_REQUIRED": "{user}, nurodykite argumentą {name}, įveskite: `{type}`",
+    "ARGUMENT_TIME": "{user}, iš naujo paleiskite komandą."
   },
   "hu": {
-		"ERROR": "Hiba :(",
+    "ERROR": "Hiba :(",
     "COOLDOWN": "Várnod kell {duration}",
     "NOT_FOUND": "Meghatározatlan parancs",
-		"ARGUMENT_REQUIRED": "{user}, adja meg a {name} argumentumot, írja be: `{type}`",
-  	"ARGUMENT_TIME": "{user}, futtassa újra a parancsot."
+    "ARGUMENT_REQUIRED": "{user}, adja meg a {name} argumentumot, írja be: `{type}`",
+    "ARGUMENT_TIME": "{user}, futtassa újra a parancsot."
   },
   "nl": {
-		"ERROR": "Fout :(",
+    "ERROR": "Fout :(",
     "COOLDOWN": "Je moet {duration} wachten",
     "NOT_FOUND": "Ongedefinieerd commando",
-		"ARGUMENT_REQUIRED": "{user}, definieer a.u.b. argument {name}, typ: `{type}`",
-  	"ARGUMENT_TIME": "{user}, voer de opdracht opnieuw uit."
+    "ARGUMENT_REQUIRED": "{user}, definieer a.u.b. argument {name}, typ: `{type}`",
+    "ARGUMENT_TIME": "{user}, voer de opdracht opnieuw uit."
   },
   "no": {
     "ERROR": "Feil :(",
     "COOLDOWN": "Du må vente {duration}",
     "NOT_FOUND": "Udefinert kommando",
-		"ARGUMENT_REQUIRED": "{user}, vennligst definer argumentet {name}, skriv inn: `{type}`",
-  	"ARGUMENT_TIME": "{user}, kjør kommandoen på nytt."
+    "ARGUMENT_REQUIRED": "{user}, vennligst definer argumentet {name}, skriv inn: `{type}`",
+    "ARGUMENT_TIME": "{user}, kjør kommandoen på nytt."
   },
   "pl": {
-		"ERROR": "Błąd :(",
+    "ERROR": "Błąd :(",
     "COOLDOWN": "Musisz poczekać {duration}",
     "NOT_FOUND": "Niezdefiniowane polecenie",
-		"ARGUMENT_REQUIRED": "{user}, please define argument {name}, type: `{type}`",
-  	"ARGUMENT_TIME": "{user}, Please re-run command."
+    "ARGUMENT_REQUIRED": "{user}, please define argument {name}, type: `{type}`",
+    "ARGUMENT_TIME": "{user}, Please re-run command."
   },
   "pt-BR": {
-		"ERROR": "Erro :(",
+    "ERROR": "Erro :(",
     "COOLDOWN": "Você precisa esperar {duration}",
     "NOT_FOUND": "Comando indefinido",
-		"ARGUMENT_REQUIRED": "{user}, please define argument {name}, type: `{type}`",
-  	"ARGUMENT_TIME": "{user}, Please re-run command."
+    "ARGUMENT_REQUIRED": "{user}, please define argument {name}, type: `{type}`",
+    "ARGUMENT_TIME": "{user}, Please re-run command."
   },
   "ro": {
-		"ERROR": "Eroare :(",
+    "ERROR": "Eroare :(",
     "COOLDOWN": "Trebuie să așteptați {duration}",
     "NOT_FOUND": "Comandă nedefinită",
-		"ARGUMENT_REQUIRED": "{user}, please define argument {name}, type: `{type}`",
-  	"ARGUMENT_TIME": "{user}, Please re-run command."
+    "ARGUMENT_REQUIRED": "{user}, please define argument {name}, type: `{type}`",
+    "ARGUMENT_TIME": "{user}, Please re-run command."
   },
   "fi": {
-		"ERROR": "Error :(",
+    "ERROR": "Error :(",
     "COOLDOWN": "You need to wait {duration}",
     "NOT_FOUND": "Määrittämätön komento",
-		"ARGUMENT_REQUIRED": "{user}, please define argument {name}, type: `{type}`",
-  	"ARGUMENT_TIME": "{user}, Please re-run command."
+    "ARGUMENT_REQUIRED": "{user}, please define argument {name}, type: `{type}`",
+    "ARGUMENT_TIME": "{user}, Please re-run command."
   },
   "sv-SE": {
-		"ERROR": "Error :(",
+    "ERROR": "Error :(",
     "COOLDOWN": "You need to wait {duration}",
     "NOT_FOUND": "Undefined command",
-		"ARGUMENT_REQUIRED": "{user}, please define argument {name}, type: `{type}`",
-  	"ARGUMENT_TIME": "{user}, Please re-run command."
+    "ARGUMENT_REQUIRED": "{user}, please define argument {name}, type: `{type}`",
+    "ARGUMENT_TIME": "{user}, Please re-run command."
   },
   "vi": {
-		"ERROR": "Error :(",
+    "ERROR": "Error :(",
     "COOLDOWN": "You need to wait {duration}",
     "NOT_FOUND": "Undefined command",
-		"ARGUMENT_REQUIRED": "{user}, please define argument {name}, type: `{type}`",
-  	"ARGUMENT_TIME": "{user}, Please re-run command."
+    "ARGUMENT_REQUIRED": "{user}, please define argument {name}, type: `{type}`",
+    "ARGUMENT_TIME": "{user}, Please re-run command."
   },
   "tr": {
-		"ERROR": "Hata :(",
+    "ERROR": "Hata :(",
     "COOLDOWN": "{duration} beklemen lazım",
     "NOT_FOUND": "Görünüşe göre komut seninle saklambaç oynuyor",
-		"ARGUMENT_REQUIRED": "{user}, lütfen argümanı tanımlayın {name}, tip: `{type}`",
-  	"ARGUMENT_TIME": "{user}, lütfen komutu yeniden kullan."
+    "ARGUMENT_REQUIRED": "{user}, lütfen argümanı tanımlayın {name}, tip: `{type}`",
+    "ARGUMENT_TIME": "{user}, lütfen komutu yeniden kullan."
   },
   "cs": {
-		"ERROR": "Error :(",
+    "ERROR": "Error :(",
     "COOLDOWN": "You need to wait {duration}",
     "NOT_FOUND": "Undefined command",
-		"ARGUMENT_REQUIRED": "{user}, please define argument {name}, type: `{type}`",
-  	"ARGUMENT_TIME": "{user}, Please re-run command."
+    "ARGUMENT_REQUIRED": "{user}, please define argument {name}, type: `{type}`",
+    "ARGUMENT_TIME": "{user}, Please re-run command."
   },
   "el": {
-		"ERROR": "Error :(",
+    "ERROR": "Error :(",
     "COOLDOWN": "You need to wait {duration}",
     "NOT_FOUND": "Undefined command",
-		"ARGUMENT_REQUIRED": "{user}, please define argument {name}, type: `{type}`",
-  	"ARGUMENT_TIME": "{user}, Please re-run command."
+    "ARGUMENT_REQUIRED": "{user}, please define argument {name}, type: `{type}`",
+    "ARGUMENT_TIME": "{user}, Please re-run command."
   },
   "bg": {
-		"ERROR": "Error :(",
+    "ERROR": "Error :(",
     "COOLDOWN": "You need to wait {duration}",
     "NOT_FOUND": "Undefined command",
-		"ARGUMENT_REQUIRED": "{user}, please define argument {name}, type: `{type}`",
-  	"ARGUMENT_TIME": "{user}, Please re-run command."
+    "ARGUMENT_REQUIRED": "{user}, please define argument {name}, type: `{type}`",
+    "ARGUMENT_TIME": "{user}, Please re-run command."
   },
   "ru": {
     "ERROR": "Error :(",
     "COOLDOWN": "You need to wait {duration}",
     "NOT_FOUND": "Undefined command",
-		"ARGUMENT_REQUIRED": "{user}, please define argument {name}, type: `{type}`",
-  	"ARGUMENT_TIME": "{user}, Please re-run command."
+    "ARGUMENT_REQUIRED": "{user}, please define argument {name}, type: `{type}`",
+    "ARGUMENT_TIME": "{user}, Please re-run command."
   },
   "uk": {
-		"ERROR": "Error :(",
+    "ERROR": "Error :(",
     "COOLDOWN": "You need to wait {duration}",
     "NOT_FOUND": "Undefined command",
-		"ARGUMENT_REQUIRED": "{user}, please define argument {name}, type: `{type}`",
-  	"ARGUMENT_TIME": "{user}, Please re-run command."
+    "ARGUMENT_REQUIRED": "{user}, please define argument {name}, type: `{type}`",
+    "ARGUMENT_TIME": "{user}, Please re-run command."
   },
   "hi": {
-		"ERROR": "Error :(",
+    "ERROR": "Error :(",
     "COOLDOWN": "You need to wait {duration}",
     "NOT_FOUND": "Undefined command",
-		"ARGUMENT_REQUIRED": "{user}, please define argument {name}, type: `{type}`",
-  	"ARGUMENT_TIME": "{user}, Please re-run command."
+    "ARGUMENT_REQUIRED": "{user}, please define argument {name}, type: `{type}`",
+    "ARGUMENT_TIME": "{user}, Please re-run command."
   },
   "th": {
-		"ERROR": "Error :(",
+    "ERROR": "Error :(",
     "COOLDOWN": "You need to wait {duration}",
     "NOT_FOUND": "Undefined command",
-		"ARGUMENT_REQUIRED": "{user}, please define argument {name}, type: `{type}`",
-  	"ARGUMENT_TIME": "{user}, Please re-run command."
+    "ARGUMENT_REQUIRED": "{user}, please define argument {name}, type: `{type}`",
+    "ARGUMENT_TIME": "{user}, Please re-run command."
   },
   "zh-CN": {
-		"ERROR": "Error :(",
+    "ERROR": "Error :(",
     "COOLDOWN": "You need to wait {duration}",
     "NOT_FOUND": "Undefined command",
-		"ARGUMENT_REQUIRED": "{user}, please define argument {name}, type: `{type}`",
-  	"ARGUMENT_TIME": "{user}, Please re-run command."
+    "ARGUMENT_REQUIRED": "{user}, please define argument {name}, type: `{type}`",
+    "ARGUMENT_TIME": "{user}, Please re-run command."
   },
   "ja": {
-		"ERROR": "Error :(",
+    "ERROR": "Error :(",
     "COOLDOWN": "You need to wait {duration}",
     "NOT_FOUND": "Undefined command",
-		"ARGUMENT_REQUIRED": "{user}, please define argument {name}, type: `{type}`",
-  	"ARGUMENT_TIME": "{user}, Please re-run command."
+    "ARGUMENT_REQUIRED": "{user}, please define argument {name}, type: `{type}`",
+    "ARGUMENT_TIME": "{user}, Please re-run command."
   },
   "zh-TW": {
-		"ERROR": "Error :(",
+    "ERROR": "Error :(",
     "COOLDOWN": "You need to wait {duration}",
     "NOT_FOUND": "Undefined command",
-		"ARGUMENT_REQUIRED": "{user}, please define argument {name}, type: `{type}`",
-  	"ARGUMENT_TIME": "{user}, Please re-run command."
+    "ARGUMENT_REQUIRED": "{user}, please define argument {name}, type: `{type}`",
+    "ARGUMENT_TIME": "{user}, Please re-run command."
   },
   "ko": {
-		"ERROR": "Error :(",
+    "ERROR": "Error :(",
     "COOLDOWN": "You need to wait {duration}",
     "NOT_FOUND": "Undefined command",
-		"ARGUMENT_REQUIRED": "{user}, please define argument {name}, type: `{type}`",
-  	"ARGUMENT_TIME": "{user}, Please re-run command."
+    "ARGUMENT_REQUIRED": "{user}, please define argument {name}, type: `{type}`",
+    "ARGUMENT_TIME": "{user}, Please re-run command."
   }
 }
