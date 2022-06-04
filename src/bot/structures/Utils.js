@@ -43,9 +43,9 @@ class Utils {
       video = await (await (await getPlaylist(url)).fetch()).videos;
     }
     else if (/^.*(https:\/\/open\.spotify\.com\/track)([^#\&\?]*).*/gi.test(url)) {
-			await play.refreshToken()
-			let sp_data = await play.spotify("https://open.spotify.com/track/xxx")
-			let searched = await play.search(`${sp_data.name}`, {imit: 1})
+      await play.refreshToken()
+      let sp_data = await play.spotify("https://open.spotify.com/track/xxx")
+      let searched = await play.search(`${sp_data.name}`, {imit: 1})
       /*const preview = await getPreview(url);
       const videoName = `${preview.title} - ${preview.artist}`;*/
       const videoUrl = searched[0].url //await (Utils.search(videoName, 1))[0].value;
