@@ -20,7 +20,7 @@ new Command({
       .setAuthor({ name: `Cariye+'s Info`, iconURL: client.user.avatarURL({format: "png"}) })
       .setThumbnail(client.user.displayAvatarURL({ format: "png", size: 4096 }))
       .setColor("RANDOM")
-      .addField("About Me", `\n:man_technologist: **Developer:**\n wh#1249 | <@918527458582622238>\n\n :robot: **My Name:**\n Cariye+\n\n :id: **ID:**\n 849663572308918343\n\n **Servers and Users:**\n In ${client.guilds.cache.size} servers with ${users} users`)
+      .addField("About Me", `\n:man_technologist: **Developer:**\n disabled account#8272 | <@496328012741214208>\n\n :robot: **My Name:**\n Cariye+\n\n :id: **ID:**\n 849663572308918343\n\n **Servers and Users:**\n In ${client.guilds.cache.size} servers with ${users} users`)
       .addField("Technical Info", `\n**OS**\n ${process.platform.toUpperCase()}\n\n **Memory Usage**\n ${Math.floor((process.memoryUsage().heapUsed / 1024)/1024)} MB\n\n **Status**\n :white_check_mark: I will always be online`, true)
       .addField("Ping and Uptime", `\n**WS Ping**\n ${Math.floor(client.ws.ping)}ms\n\n **Bot Ping**\n ${ping}ms \n\n**Uptime**\n ${duration}`, true)
       .addField("Versions", `\n**Discord.js Version**\n ${Discord.version}\n\n **Node.js Version**\n ${process.version}`, true)
