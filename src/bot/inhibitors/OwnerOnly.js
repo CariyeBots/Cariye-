@@ -4,7 +4,7 @@ class OwnerOnlyInhibitor extends Inhibitor.Inhibitor {
 	constructor(options) {
 		super(options);
 
-		this.ownerIds = ['496328012741214208', '918527458582622238'];
+		this.ownerIds = ['owner-id'];
 	}
 
 	run(ctx) {
