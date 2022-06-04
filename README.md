@@ -1,6 +1,6 @@
 # Cariye+
 
-If you want to help
+If you wanna help us
 > For Translate [responses.json](https://github.com/CariyeBots/Cariye-Plus/blob/main/src/bot/responses.json), just open Pull request for changes
 
 If you want to use this bot
