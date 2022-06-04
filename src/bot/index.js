@@ -64,13 +64,6 @@ mongoose.connect(process.env.mongodb_uri, {
   useUnifiedTopology: true,
 }).then(console.log("Success - Connected to MongoDatabase"));
 
-client.on("userAvatarUpdate", (user, newAvatar) => {
-  console.log(`${user.username} changed avatar to ${newAvatar}`)
-});
-client.on("userUsernameUpdate", (oldUsername, newUsername) => {
-  console.log(`${oldUsername.username} -> ${newUsername}`)
-});
-
 client.on('error', console.log);
 client.on('ratelimit', console.log);
 client.on('warn', console.log);
