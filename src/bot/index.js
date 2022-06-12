@@ -1,11 +1,11 @@
 require('dotenv').config();
+require("../keep_alive.js");
+require('@gcommands/plugin-moreevents');
 const { Intents, Collection } = require('discord.js');
-const x = require("../keep_alive.js");
 const { join } = require('path');
 const { readFileSync } = require('fs');
 const { GClient, Plugins, Logger, Command, Component } = require("gcommands");
 const { MongoDBProvider } = require('gcommands/dist/providers/MongoDBProvider');
-require('@gcommands/plugin-moreevents');
 const mongoose = require("mongoose");
 Plugins.search(__dirname);
 
