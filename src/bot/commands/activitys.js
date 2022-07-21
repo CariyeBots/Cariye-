@@ -29,10 +29,21 @@ new Command({
 					.setPlaceholder('Select a Activity')
 					.addOptions([
 						{
+							label: 'Ask Away',
+							description: 'Level 1 Server Boosts needed',
+							value: 'ask'
+						},
+						{
 							label: 'Blazing 8s',
 							description: 'Level 1 Server Boosts needed',
 							value: 'blazing',
 							emoji: "🎴",
+						},
+						{
+							label: 'Bobble League',
+							description: 'Level 1 Server Boosts needed',
+							value: 'bobble',
+							emoji: "⚽",
 						},
             {
 							label: 'Checkers In The Park',
@@ -76,7 +87,7 @@ new Command({
               emoji: "🎨",
 						},
             {
-							label: 'Spell Cast',
+							label: 'SpellCast',
 							description: '1 Level Server Boosts needed',
 							value: 'spellcast',
 						},
@@ -118,6 +129,47 @@ new Command({
 
       const value = i.values[0];
       switch (value) {
+				case "blazing" :
+          fetch(`https://discord.com/api/v8/channels/${member.voice.channel.id}/invites`, {
+            method: "POST",
+            body: JSON.stringify({
+              max_age: 86400,
+              max_uses: 0,
+              target_application_id: "976052223358406656",
+              target_type: 2,
+              temporary: false,
+              validate: null
+            }),
+            headers: {
+              "Authorization": `Bot ${process.env.token}`,
+              "Content-Type": "application/json"
+            }
+          })
+          .then(res => res.json())
+          .then(async invite => {
+            let e = new MessageEmbed()
+              .setTitle("Ask Away Game")
+							.setThumbnail("https://raw.githubusercontent.com/xHyroM/discord-activities/master/activities/976052223358406656.png")
+							.setDescription("Ask Away is the first ice-breaker game built for Discord! Thousands of quirky and delightful questions designed to get conversations started! Who knows you best? Who’s got a few surprises in store? Find out with Ask Away!")
+							.setFooter({
+								text: "Up to 10 participants"
+							})
+              .setColor("RANDOM");
+
+            let row = new MessageActionRow().addComponents([
+              new MessageButton()
+                .setLabel("Click me to join 'Ask Away' game")
+                .setURL("https://discord.gg/" + invite.code)
+                .setStyle("LINK")
+								.setEmoji("🎴")
+            ])
+            await i.deferUpdate();
+            return i.editReply({
+              embeds: [e],
+              components: [row]
+            })
+          });
+				break;
         case "blazing" :
           fetch(`https://discord.com/api/v8/channels/${member.voice.channel.id}/invites`, {
             method: "POST",
@@ -151,6 +203,46 @@ new Command({
                 .setURL("https://discord.gg/" + invite.code)
                 .setStyle("LINK")
 								.setEmoji("🎴")
+            ])
+            await i.deferUpdate();
+            return i.editReply({
+              embeds: [e],
+              components: [row]
+            })
+          });
+				break;
+				case "bobble" :
+          fetch(`https://discord.com/api/v8/channels/${member.voice.channel.id}/invites`, {
+            method: "POST",
+            body: JSON.stringify({
+              max_age: 86400,
+              max_uses: 0,
+              target_application_id: "947957217959759964",
+              target_type: 2,
+              temporary: false,
+              validate: null
+            }),
+            headers: {
+              "Authorization": `Bot ${process.env.token}`,
+              "Content-Type": "application/json"
+            }
+          })
+          .then(res => res.json())
+          .then(async invite => {
+            let e = new MessageEmbed()
+              .setTitle("Bobble League Game")
+							.setThumbnail("https://cdn.discordapp.com/app-assets/947957217959759964/978769923092406413.png?size=4096")
+							.setFooter({
+								text: "Up to 8 participants"
+							})
+              .setColor("RANDOM");
+
+            let row = new MessageActionRow().addComponents([
+              new MessageButton()
+                .setLabel("Click me to join 'Bobble League' game")
+                .setURL("https://discord.gg/" + invite.code)
+                .setStyle("LINK")
+								.setEmoji("⚽")
             ])
             await i.deferUpdate();
             return i.editReply({
