@@ -16,10 +16,10 @@ Plugins.search(__dirname);
 Command.setDefaults({ cooldown: '5s' });
 
 Component.setDefaults({
-	onError: (ctx, error) => {
+  onError: (ctx, error) => {
     console.log(error)
-		return ctx.reply('Oops! Something went wrong')
-	}
+    return ctx.reply('Oops! Something went wrong')
+  }
 });
 
 Logger.setLevel(Logger.TRACE);
@@ -28,13 +28,13 @@ const client = new GClient({
   intents: [
     Intents.FLAGS.GUILDS,
     Intents.FLAGS.GUILD_VOICE_STATES,
-		Intents.FLAGS.GUILD_BANS,
-		Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS,
+    Intents.FLAGS.GUILD_BANS,
+    Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS,
     Intents.FLAGS.GUILD_MEMBERS,
     Intents.FLAGS.GUILD_MESSAGES,
     Intents.FLAGS.GUILD_PRESENCES,
     Intents.FLAGS.DIRECT_MESSAGES,
-		Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+    Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
     Intents.FLAGS.GUILD_INVITES,
     Intents.FLAGS.GUILD_INTEGRATIONS,
     Intents.FLAGS.GUILD_PRESENCES,
@@ -43,11 +43,11 @@ const client = new GClient({
     join(__dirname, 'commands'),
     join(__dirname, 'events')
   ],
-	failIfNotExists: true,
+  failIfNotExists: true,
   database: new MongoDBProvider(process.env.mongodb_uri),
-	messageSupport: true,
-	messagePrefix: '!',
-	partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
+  messageSupport: true,
+  messagePrefix: '!',
+  partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
 });
 
 client.queue = new Collection();
@@ -77,15 +77,15 @@ client.on('ratelimit', console.log);
 client.on('warn', console.log);
 
 client.giveawaysManager.on("giveawayReactionAdded", (giveaway, member, reaction) => {
-    console.log(`${member.user.tag} entered giveaway #${giveaway.messageId} (${reaction.emoji.name})`);
+  console.log(`${member.user.tag} entered giveaway #${giveaway.messageId} (${reaction.emoji.name})`);
 });
 
 client.giveawaysManager.on("giveawayReactionRemoved", (giveaway, member, reaction) => {
-    console.log(`${member.user.tag} unreact to giveaway #${giveaway.messageId} (${reaction.emoji.name})`);
+  console.log(`${member.user.tag} unreact to giveaway #${giveaway.messageId} (${reaction.emoji.name})`);
 });
 
 client.giveawaysManager.on("giveawayEnded", (giveaway, winners) => {
-    console.log(`Giveaway #${giveaway.messageId} ended! Winners: ${winners.map((member) => member.user.username).join(', ')}`);
+  console.log(`Giveaway #${giveaway.messageId} ended! Winners: ${winners.map((member) => member.user.username).join(', ')}`);
 });
 
 client.login(process.env.token);
