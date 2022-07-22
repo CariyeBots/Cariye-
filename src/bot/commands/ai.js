@@ -34,7 +34,7 @@ new Command({
 		const openai = new OpenAIApi(configuration);
 
 		const completion = await openai.createCompletion("text-davinci-001", {
-  		prompt: text,
+  		prompt: text
 		});
 
     return reply({
