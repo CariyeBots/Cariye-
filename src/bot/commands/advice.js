@@ -17,6 +17,6 @@ new Command({
     let embed = new MessageEmbed()
       .setDescription(`${buff.data.slip.advice}`)
       .setColor("RANDOM")
-    reply({ embeds: [embed] })
+    return reply({ embeds: [embed] })
   }
 })
