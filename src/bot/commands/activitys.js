@@ -6,12 +6,12 @@ const fetch = require('node-fetch');
 new Command({
   name: "activities",
   description: "All Discord Activities",
-	inhibitors: [
+  inhibitors: [
     new VoteInhibitor({
       message: 'You must be vote me if you want to use this command ⬎\nhttps://top.gg/bot/849663572308918343/vote'
     })
   ],
-	nameLocalizations: {
+  nameLocalizations: {
     "tr": "aktiviteler"
   },
   descriptionLocalizations: {
