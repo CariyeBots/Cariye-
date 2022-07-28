@@ -8,7 +8,6 @@ const { join } = require('path');
 require('@gcommands/plugin-language').default({ defaultLanguage: 'en-GB', languageText: JSON.parse(readFileSync(`${__dirname}/responses.json`, 'utf-8')) });
 require('@gcommands/plugin-votes').default({ type: 'TOP.GG', apiKeys: process.env.topgg, serverAuthKey: process.env.topggwh });
 require('@gcommands/plugin-moreevents');
-require("../keep_alive.js");
 require('dotenv').config();
 
 Plugins.search(__dirname);
