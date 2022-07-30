@@ -151,9 +151,7 @@ new Command({
               .setTitle("Ask Away Game")
 							.setThumbnail("https://raw.githubusercontent.com/xHyroM/discord-activities/master/activities/976052223358406656.png")
 							.setDescription("Ask Away is the first ice-breaker game built for Discord! Thousands of quirky and delightful questions designed to get conversations started! Who knows you best? Who’s got a few surprises in store? Find out with Ask Away!")
-							.setFooter({
-								text: "Up to 10 participants"
-							})
+							.setFooter({ text: "Up to 10 participants" })
               .setColor("Random");
 
             let row = new ActionRowBuilder().addComponents([
