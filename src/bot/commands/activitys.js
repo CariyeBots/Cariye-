@@ -1,17 +1,17 @@
-const { MessageEmbed } = require("discord.js")
-const { Command, CommandType, MessageActionRow, MessageSelectMenu, MessageButton } = require("gcommands")
+const { EmbedBuilder, SelectMenuBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js")
+const { Command, CommandType } = require("gcommands")
 const { VoteInhibitor } = require('@gcommands/plugin-votes');
 const fetch = require('node-fetch');
 
 new Command({
   name: "activities",
   description: "All Discord Activities",
-  inhibitors: [
+	inhibitors: [
     new VoteInhibitor({
       message: 'You must be vote me if you want to use this command ⬎\nhttps://top.gg/bot/849663572308918343/vote'
     })
   ],
-  nameLocalizations: {
+	nameLocalizations: {
     "tr": "aktiviteler"
   },
   descriptionLocalizations: {
@@ -22,9 +22,9 @@ new Command({
     let error = (c) => reply({ content: `:x: *${c}*`, ephemeral: true });
     if (!member.voice.channel) return error("Please connect to a voice channel");
 
-    const row = new MessageActionRow()
+    const row = new ActionRowBuilder()
 			.addComponents(
-				new MessageSelectMenu()
+				new SelectMenuBuilder()
 					.setCustomId('select')
 					.setPlaceholder('Select a Activity')
 					.addOptions([
@@ -106,9 +106,9 @@ new Command({
 					]),
 			);
 
-    let e = new MessageEmbed()
+    let e = new EmbedBuilder()
       .setTitle("Select a Activity")
-      .setColor("RANDOM")
+      .setColor("Random")
 
     let a = await reply({
       embeds: [e],
@@ -147,20 +147,20 @@ new Command({
           })
           .then(res => res.json())
           .then(async invite => {
-            let e = new MessageEmbed()
+            let e = new EmbedBuilder()
               .setTitle("Ask Away Game")
 							.setThumbnail("https://raw.githubusercontent.com/xHyroM/discord-activities/master/activities/976052223358406656.png")
 							.setDescription("Ask Away is the first ice-breaker game built for Discord! Thousands of quirky and delightful questions designed to get conversations started! Who knows you best? Who’s got a few surprises in store? Find out with Ask Away!")
 							.setFooter({
 								text: "Up to 10 participants"
 							})
-              .setColor("RANDOM");
+              .setColor("Random");
 
-            let row = new MessageActionRow().addComponents([
-              new MessageButton()
+            let row = new ActionRowBuilder().addComponents([
+              new ButtonBuilder()
                 .setLabel("Click me to join 'Ask Away' game")
                 .setURL("https://discord.gg/" + invite.code)
-                .setStyle("LINK")
+                .setStyle(ButtonStyle.Link)
 								.setEmoji("🎴")
             ])
             await i.deferUpdate();
@@ -188,20 +188,20 @@ new Command({
           })
           .then(res => res.json())
           .then(async invite => {
-            let e = new MessageEmbed()
+            let e = new EmbedBuilder()
               .setTitle("Blazing 8s Game")
 							.setThumbnail("https://raw.githubusercontent.com/xHyroM/discord-activities/master/activities/832025144389533716.png")
 							.setDescription("Be the first to zero cards by swapping hands, skipping players, and reversing turns!")
 							.setFooter({
 								text: "Up to 8 participants"
 							})
-              .setColor("RANDOM");
+              .setColor("Random");
 
-            let row = new MessageActionRow().addComponents([
-              new MessageButton()
+            let row = new ActionRowBuilder().addComponents([
+              new ButtonBuilder()
                 .setLabel("Click me to join 'Blazing 8s' game")
                 .setURL("https://discord.gg/" + invite.code)
-                .setStyle("LINK")
+                .setStyle(ButtonStyle.Link)
 								.setEmoji("🎴")
             ])
             await i.deferUpdate();
@@ -229,19 +229,19 @@ new Command({
           })
           .then(res => res.json())
           .then(async invite => {
-            let e = new MessageEmbed()
+            let e = new EmbedBuilder()
               .setTitle("Bobble League Game")
 							.setThumbnail("https://cdn.discordapp.com/app-assets/947957217959759964/978769923092406413.png?size=4096")
 							.setFooter({
 								text: "Up to 8 participants"
 							})
-              .setColor("RANDOM");
+              .setColor("Random");
 
-            let row = new MessageActionRow().addComponents([
-              new MessageButton()
+            let row = new ActionRowBuilder().addComponents([
+              new ButtonBuilder()
                 .setLabel("Click me to join 'Bobble League' game")
                 .setURL("https://discord.gg/" + invite.code)
-                .setStyle("LINK")
+                .setStyle(ButtonStyle.Link)
 								.setEmoji("⚽")
             ])
             await i.deferUpdate();
@@ -253,20 +253,20 @@ new Command({
 				break;
         case "checkers":
           client.discordTogether.createTogetherCode(member.voice.channel.id, 'checkers').then(async invite => {
-            const embed = new MessageEmbed()
+            const embed = new EmbedBuilder()
               .setTitle("Checkers In The Park Game")
 							.setThumbnail("https://raw.githubusercontent.com/xHyroM/discord-activities/master/activities/832013003968348200.png")
 							.setDescription("With boards spread across your server, jump between games as easily as you jump your opponent's pieces!")
 							.setFooter({
 								text: "Unlimited participants"
 							})
-              .setColor("RANDOM")
+              .setColor("Random")
 
-            let row = new MessageActionRow().addComponents([
-              new MessageButton()
+            let row = new ActionRowBuilder().addComponents([
+              new ButtonBuilder()
                 .setLabel("Click me to join 'Checkers In The Park' game")
                 .setURL(invite.code)
-                .setStyle("LINK")
+                .setStyle(ButtonStyle.Link)
 								.setEmoji("🏁")
             ]);
             await i.deferUpdate();
@@ -278,20 +278,20 @@ new Command({
         break;
         case "chess":
           client.discordTogether.createTogetherCode(member.voice.channel.id, 'chess').then(async invite => {
-            const embed = new MessageEmbed()
+            const embed = new EmbedBuilder()
               .setTitle("Chess In The Park Game")
 							.setThumbnail("https://raw.githubusercontent.com/xHyroM/discord-activities/master/activities/832012774040141894.png")
 							.setDescription("Unleash your inner Grandmaster by playing multiple games of Chess at once vs anybody on your server.")
 							.setFooter({
 								text: "Unlimited participants"
 							})
-              .setColor("RANDOM")
+              .setColor("Random")
 
-            let row = new MessageActionRow().addComponents([
-              new MessageButton()
+            let row = new ActionRowBuilder().addComponents([
+              new ButtonBuilder()
                 .setLabel("Click me to join 'Chess In The Park' game")
                 .setURL(invite.code)
-                .setStyle("LINK")
+                .setStyle(ButtonStyle.Link)
 								.setEmoji("♟️")
             ]);
             await i.deferUpdate();
@@ -319,20 +319,20 @@ new Command({
           })
           .then(res => res.json())
           .then(async invite => {
-            let e = new MessageEmbed()
+            let e = new EmbedBuilder()
               .setTitle("Land-io Game")
 							.setThumbnail("https://raw.githubusercontent.com/xHyroM/discord-activities/master/activities/903769130790969345.png")
 							.setDescription("Pick a character and encircle new territory. Run into trails to knock out foes - careful not to hit your own!")
 							.setFooter({
 								text: "Up to 16 participants"
 							})
-              .setColor("RANDOM");
+              .setColor("Random");
 
-            let row = new MessageActionRow().addComponents([
-              new MessageButton()
+            let row = new ActionRowBuilder().addComponents([
+              new ButtonBuilder()
                 .setLabel("Click me to join 'Land-io' game")
                 .setURL("https://discord.gg/" + invite.code)
-                .setStyle("LINK")
+                .setStyle(ButtonStyle.Link)
             ])
             await i.deferUpdate();
             return i.editReply({
@@ -359,20 +359,20 @@ new Command({
           })
           .then(res => res.json())
           .then(async invite => {
-            let e = new MessageEmbed()
+            let e = new EmbedBuilder()
               .setTitle("Letter League Game")
 							.setThumbnail("https://raw.githubusercontent.com/xHyroM/discord-activities/master/activities/879863686565621790.png")
 							.setDescription("Craft words from a set of tiles, and let your lexicon fly! It's Letter League time!")
 							.setFooter({
 								text: "Up to 8 participants"
 							})
-              .setColor("RANDOM");
+              .setColor("Random");
 
-            let row = new MessageActionRow().addComponents([
-              new MessageButton()
+            let row = new ActionRowBuilder().addComponents([
+              new ButtonBuilder()
                 .setLabel("Click me to join 'Letter League' game")
                 .setURL("https://discord.gg/" + invite.code)
-                .setStyle("LINK")
+                .setStyle(ButtonStyle.Link)
 								.setEmoji("🔤")
             ])
             await i.deferUpdate();
@@ -384,20 +384,20 @@ new Command({
         break;
         case "poker":
           client.discordTogether.createTogetherCode(member.voice.channel.id, 'poker').then(async invite => {
-            const embed = new MessageEmbed()
+            const embed = new EmbedBuilder()
               .setTitle("Poker Nİght Game")
 							.setThumbnail("https://raw.githubusercontent.com/xHyroM/discord-activities/master/activities/755827207812677713.png")
 							.setDescription("A Texas hold 'em style game where you can prove your Poker prowess!")
 							.setFooter({
 								text: "Up to 8 participants"
 							})
-              .setColor("RANDOM")
+              .setColor("Random")
 
-            let row = new MessageActionRow().addComponents([
-              new MessageButton()
+            let row = new ActionRowBuilder().addComponents([
+              new ButtonBuilder()
                 .setLabel("Click me to join 'Poker Night' game")
                 .setURL(invite.code)
-                .setStyle("LINK")
+                .setStyle(ButtonStyle.Link)
 								.setEmoji("🃏")
             ]);
             await i.deferUpdate();
@@ -409,20 +409,20 @@ new Command({
         break;
         case "puttparty":
           client.discordTogether.createTogetherCode(member.voice.channel.id, 'puttparty').then(async invite => {
-            const embed = new MessageEmbed()
+            const embed = new EmbedBuilder()
               .setTitle("Putt Party Game")
 							.setDescription("A putting golf game where power ups help make your next shot easier, or tougher for your opponents.")
 							.setThumbnail("https://raw.githubusercontent.com/xHyroM/discord-activities/master/activities/945737671223947305.png")
 							.setFooter({
 								text: "Up to 8 participants"
 							})
-              .setColor("RANDOM")
+              .setColor("Random")
 
-            let row = new MessageActionRow().addComponents([
-              new MessageButton()
+            let row = new ActionRowBuilder().addComponents([
+              new ButtonBuilder()
                 .setLabel("Click me to join 'Putt Party' game")
                 .setURL(invite.code)
-                .setStyle("LINK")
+                .setStyle(ButtonStyle.Link)
 								.setEmoji("⛳")
             ]);
             await i.deferUpdate();
@@ -434,20 +434,20 @@ new Command({
         break;
         case "sketchheads":
           client.discordTogether.createTogetherCode(member.voice.channel.id, 'sketchheads').then(async invite => {
-            const embed = new MessageEmbed()
+            const embed = new EmbedBuilder()
               .setTitle("Sketch Heads Game")
 							.setDescription("A drawing game where you discover that you're either bad at drawing or your friends are bad at guessing!")
 							.setThumbnail("https://raw.githubusercontent.com/xHyroM/discord-activities/master/activities/902271654783242291.png")
 							.setFooter({
 								text: "Up to 8 participants"
 							})
-              .setColor("RANDOM")
+              .setColor("Random")
 
-            let row = new MessageActionRow().addComponents([
-              new MessageButton()
+            let row = new ActionRowBuilder().addComponents([
+              new ButtonBuilder()
                 .setLabel("Click me to join 'Sketch Heads' game")
                 .setURL(invite.code)
-                .setStyle("LINK")
+                .setStyle(ButtonStyle.Link)
 								.setEmoji("🎨")
             ]);
             await i.deferUpdate();
@@ -459,20 +459,20 @@ new Command({
         break;
         case "spellcast":
           client.discordTogether.createTogetherCode(member.voice.channel.id, 'spellcast').then(async invite => {
-            const embed = new MessageEmbed()
+            const embed = new EmbedBuilder()
               .setTitle("SpellCast Game")
 							.setDescription("A word game where players search for words on a magical grid of letters. Challenge friends or play solo.")
 							.setThumbnail("https://raw.githubusercontent.com/xHyroM/discord-activities/master/activities/852509694341283871.png")
 							.setFooter({
 								text: "Up to 6 participants"
 							})
-              .setColor("RANDOM")
+              .setColor("Random")
 
-            let row = new MessageActionRow().addComponents([
-              new MessageButton()
+            let row = new ActionRowBuilder().addComponents([
+              new ButtonBuilder()
                 .setLabel("Click me to join 'SpellCast' game")
                 .setURL(invite.code)
-                .setStyle("LINK")
+                .setStyle(ButtonStyle.Link)
             ]);
             await i.deferUpdate();
             return i.editReply({
@@ -483,20 +483,20 @@ new Command({
         break;
         case "wordsnack":
           client.discordTogether.createTogetherCode(member.voice.channel.id, 'wordsnack').then(async invite => {
-            const embed = new MessageEmbed()
+            const embed = new EmbedBuilder()
               .setTitle("Word Snack Game")
 							.setDescription("Whip up letter combinations in this sizzling fast word game!")
 							.setThumbnail("https://raw.githubusercontent.com/xHyroM/discord-activities/master/activities/879863976006127627.png")
 							.setFooter({
 								text: "Up to 8 participants"
 							})
-              .setColor("RANDOM")
+              .setColor("Random")
 
-            let row = new MessageActionRow().addComponents([
-              new MessageButton()
+            let row = new ActionRowBuilder().addComponents([
+              new ButtonBuilder()
                 .setLabel("Click me to join 'Word Snack' game")
                 .setURL(invite.code)
-                .setStyle("LINK")
+                .setStyle(ButtonStyle.Link)
 								.setEmoji("🔤")
             ]);
             await i.deferUpdate();
@@ -508,20 +508,20 @@ new Command({
         break;
         case "youtube":
           client.discordTogether.createTogetherCode(member.voice.channel.id, 'awkword').then(async invite => {
-            const embed = new MessageEmbed()
+            const embed = new EmbedBuilder()
               .setTitle("Watch Together Game")
 							.setDescription("Create and watch a playlist of videos with your friends. Your choice to share the remote or not.")
 							.setThumbnail("https://raw.githubusercontent.com/xHyroM/discord-activities/master/activities/880218394199220334.png")
 							.setFooter({
 								text: "Unlimited participants"
 							})
-              .setColor("RANDOM")
+              .setColor("Random")
 
-            let row = new MessageActionRow().addComponents([
-              new MessageButton()
+            let row = new ActionRowBuilder().addComponents([
+              new ButtonBuilder()
                 .setLabel("Click me to join 'Watch Together' game")
                 .setURL(invite.code)
-                .setStyle("LINK")
+                .setStyle(ButtonStyle.Link)
 								.setEmoji("📺")
             ]);
             await i.deferUpdate();
@@ -534,7 +534,7 @@ new Command({
       }
     });
     collector.on("end", async (c, i) => {
-      row.components.forEach((c) => c.setDisabled(true));
+      row.components.forEach((c) => ButtonBuilder.from(c).setDisabled(true));
     });
   }
 })
