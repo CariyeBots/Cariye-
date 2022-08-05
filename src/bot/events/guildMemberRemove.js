@@ -1,6 +1,6 @@
 const { Listener } = require("gcommands")
 const Schema = require("../models/welcomeSchema.js");
-const { MessageEmbed } = require("discord.js")
+const { EmbedBuilder } = require("discord.js")
 
 new Listener({
   name: "guildMemberRemove",
@@ -12,12 +12,12 @@ new Listener({
 				if (data.Channel === '0') return;
 
 				const channel = member.guild.channels.cache.get(data.Channel);
-				const welcome = new MessageEmbed()
+				const welcome = new EmbedBuilder()
 					.setAuthor({
 						name: `${member.user.username} is left from the server`,
 						iconUrl: member.user.displayAvatarURL({ dynamic: true }) || ""
 					})
-					.setColor(member.displayHexColor || "RANDOM")
+					.setColor("Random")
       		.setDescription(data.BMessage)
       		.setThumbnail("https://media4.giphy.com/media/Bht33KS4YXaHS5ABOP/giphy.gif")
 					.setTimestamp(Date.now())
