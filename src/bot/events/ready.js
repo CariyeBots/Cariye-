@@ -1,6 +1,7 @@
 const { Listener } = require('gcommands');
 const { AutoPoster } = require('topgg-autoposter');
 const { RainbowRole } = require("djs-rainbow");
+const { ActivityType } = require("discord.js")
 const axios = require("axios").default
 const fetch = require('node-fetch')
 const play = require('play-dl');
@@ -19,21 +20,8 @@ new Listener({
       `Users: ${users}`,
     ].join('\n'));
 
-    /*client.user.setPresence({
-      status: 'online',
-      activities: [
-        {
-          name: `I'M VERIFIED NOW THANK YOU FOR ALL YOUR SUPPORT 🎉`,
-          type: 'PLAYING'
-        }
-      ]
-    })*/
-
-		play.authorization();
-
     setInterval(() => {
       const statuses = [
-				`I'm verified✅ thank youu`,
 				`have a good day with your loved ones`,
         `with ${users} users`,
         `in ${client.guilds.cache.size} servers`,
@@ -42,18 +30,11 @@ new Listener({
         `/help`
       ]
       const statuss = statuses[Math.floor(Math.random() * statuses.length)]
-      client.user.setPresence({
-        status: 'online',
-        activities: [
-          {
-            name: statuss,
-            type: 'PLAYING'
-          }
-        ]
-      })
+			client.user.setActivity(statuss, { type: ActivityType.Playing });
     }, 150000)
 
 		setInterval(() => {
+			AutoPoster(process.env.topgg, client)
 			fetch(`https://api.voidbots.net/bot/stats/849663572308918343`, {
     		method: "POST",
     		headers: { 
@@ -67,8 +48,6 @@ new Listener({
     setInterval(async() => {
       await axios.get("https://camo.githubusercontent.com/50822ac66331da6cbaed87e3d931ca65ca115d35bb1e36d9123a4b73760c2539/68747470733a2f2f6b6f6d617265762e636f6d2f67687076632f3f757365726e616d653d7768617474797526636f6c6f723d626c756576696f6c6574").catch(err => console.log("error from github"));
     }, 600000);
-
-    AutoPoster(process.env.topgg, client)
 
     const Rainbow = new RainbowRole({
       client:client,
