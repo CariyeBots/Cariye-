@@ -1,5 +1,4 @@
-const { MessageEmbed } = require("discord.js");
-const { MessageButton, MessageActionRow } = require("gcommands");
+const { EmbedBuilder, ButtonBuilder, ActionRowBuilder, ButtonStyle } = require("discord.js");
 const progressbar = require("string-progressbar");
 const { Aki } = require("aki-api");
 const isPlaying = new Set();
@@ -15,17 +14,17 @@ module.exports = async (input) => {
   if (isPlaying.has(inputData.author.id))
     return input.reply(" You're already in a round of Akinator. Please stop the current game to start another.");
 
-  const gameTypeRow = new MessageActionRow().addComponents(
-    new MessageButton()
-      .setStyle("PRIMARY")
+  const gameTypeRow = new ActionRowBuilder().addComponents(
+    new ButtonBuilder()
+      .setStyle(ButtonStyle.Primary)
       .setLabel("Animal")
       .setCustomId("animal"),
-    new MessageButton()
-      .setStyle("PRIMARY")
+    new ButtonBuilder()
+      .setStyle(ButtonStyle.Primary)
       .setLabel("Character")
       .setCustomId("character"),
-    new MessageButton()
-      .setStyle("PRIMARY")
+    new ButtonBuilder()
+      .setStyle(ButtonStyle.Primary)
       .setLabel("Object")
       .setCustomId("object")
   );
@@ -56,9 +55,9 @@ module.exports = async (input) => {
       gameTypeInteraction.customId.toLowerCase() ===
       gameTypeRow.components[i].customId.toLowerCase()
     ) {
-      gameTypeRow.components[i].setStyle("SUCCESS").setDisabled(true);
+      gameTypeRow.components[i].setStyle(ButtonStyle.Success).setDisabled(true);
     } else {
-      gameTypeRow.components[i].setStyle("SECONDARY").setDisabled(true);
+      gameTypeRow.components[i].setStyle(ButtonStyle.Secondary).setDisabled(true);
     }
   }
 
@@ -88,7 +87,7 @@ module.exports = async (input) => {
       break;
   }
 
-  const readyEmbed = new MessageEmbed()
+  const readyEmbed = new EmbedBuilder()
     .setColor("RANDOM")
     .setAuthor({
       name: `${
@@ -97,9 +96,7 @@ module.exports = async (input) => {
       iconURL: inputData.author.displayAvatarURL(),
     })
     .setTitle("Starting a round of Akinator...")
-    .setDescription(
-      "The game will begin shortly.\nIf the game hasn't started for over 10 seconds, I probably couldn't connect to the Akinator server. In that case, please try out the game later."
-    )
+    .setDescription("The game will begin shortly.\nIf the game hasn't started for over 10 seconds, I probably couldn't connect to the Akinator server. In that case, please try out the game later.")
     .setFooter({
       text: "We are not responsible for any questions and answers that Akinator might give.",
     })
@@ -127,7 +124,7 @@ module.exports = async (input) => {
 
   isPlaying.add(inputData.author.id);
 
-  const noResponseEmbed = new MessageEmbed()
+  const noResponseEmbed = new EmbedBuilder()
     .setColor("RANDOM")
     .setAuthor({
       name: `${
@@ -139,35 +136,35 @@ module.exports = async (input) => {
     .setDescription("Your game has been ended due to inactivity.");
 
   const gameRow = [
-    new MessageActionRow().addComponents(
-      new MessageButton()
-        .setStyle("SECONDARY")
+    new ActionRowBuilder().addComponents(
+      new ButtonBuilder()
+        .setStyle(ButtonStyle.Secondary)
         .setLabel("Yes")
         .setCustomId("yes"),
-      new MessageButton()
-        .setStyle("SECONDARY")
+      new ButtonBuilder()
+        .setStyle(ButtonStyle.Secondary)
         .setLabel("No")
         .setCustomId("no"),
-      new MessageButton()
-        .setStyle("SECONDARY")
+      new ButtonBuilder()
+        .setStyle(ButtonStyle.Secondary)
         .setLabel("Don't know")
         .setCustomId("dont know"),
-      new MessageButton()
-        .setStyle("SECONDARY")
+      new ButtonBuilder()
+        .setStyle(ButtonStyle.Secondary)
         .setLabel("Probably")
         .setCustomId("probably"),
-      new MessageButton()
-        .setStyle("SECONDARY")
+      new ButtonBuilder()
+        .setStyle(ButtonStyle.Secondary)
         .setLabel("Probably not")
         .setCustomId("probably not")
     ),
-    new MessageActionRow().addComponents(
-      new MessageButton()
-        .setStyle("SECONDARY")
+    new ActionRowBuilder().addComponents(
+      new ButtonBuilder()
+        .setStyle(ButtonStyle.Secondary)
         .setLabel("Back")
         .setCustomId("back"),
-      new MessageButton()
-        .setStyle("DANGER")
+      new ButtonBuilder()
+        .setStyle(ButtonStyle.Danger)
         .setLabel("Stop")
         .setCustomId("stop")
     ),
@@ -187,7 +184,7 @@ module.exports = async (input) => {
       hasGuessed = true;
       lastSteps = 0;
 
-      const guessEmbed = new MessageEmbed()
+      const guessEmbed = new EmbedBuilder()
         .setColor("RANDOM")
         .setAuthor({
           name: `${
@@ -199,7 +196,7 @@ module.exports = async (input) => {
         .setDescription(
           `**${aki.answers[0].name}**\n${aki.answers[0].description}`
         )
-        .addFields(
+        .addFields([
           {
             name: "Ranking",
             value: `#${aki.answers[0].ranking}`,
@@ -210,20 +207,20 @@ module.exports = async (input) => {
             value: aki.currentStep.toString(),
             inline: true,
           }
-        )
+        ])
         .setImage(aki.answers[0].absolute_picture_path)
         .setFooter({
           text: "Hmm...",
         })
         .setTimestamp();
 
-      const guessRow = new MessageActionRow().addComponents(
-        new MessageButton()
-          .setStyle("SECONDARY")
+      const guessRow = new ActionRowBuilder().addComponents(
+        new ButtonBuilder()
+          .setStyle(ButtonStyle.Secondary)
           .setLabel("Yes")
           .setCustomId("yes"),
-        new MessageButton()
-          .setStyle("SECONDARY")
+        new ButtonBuilder()
+          .setStyle(ButtonStyle.Secondary)
           .setLabel("No")
           .setCustomId("no")
       );
@@ -256,7 +253,7 @@ module.exports = async (input) => {
       interactionGuess.deferUpdate();
 
       if (interactionGuess.customId === "yes") {
-        const correctGameEmbed = new MessageEmbed()
+        const correctGameEmbed = new EmbedBuilder()
           .setColor("RANDOM")
           .setAuthor({
             name: `${
@@ -266,7 +263,7 @@ module.exports = async (input) => {
           })
           .setTitle("Well played!")
           .setDescription("**I guessed it right one more time!**")
-          .addFields(
+          .addFields([
             {
               name: "Character",
               value: aki.answers[0].name,
@@ -282,7 +279,7 @@ module.exports = async (input) => {
               value: aki.currentStep.toString(),
               inline: true,
             }
-          )
+          ])
           .setImage(aki.answers[0].absolute_picture_path)
           .setTimestamp();
         await gameMessage.edit({
@@ -292,7 +289,7 @@ module.exports = async (input) => {
         finished = true;
         isPlaying.delete(inputData.author.id);
       } else if (aki.currentStep >= 78) {
-        const gameFinishEmbed = new MessageEmbed()
+        const gameFinishEmbed = new EmbedBuilder()
           .setColor("RANDOM")
           .setAuthor({
             name: `${
@@ -324,7 +321,7 @@ module.exports = async (input) => {
       "probably not": 4,
     };
 
-    const akiEmbed = new MessageEmbed()
+    const akiEmbed = new EmbedBuilder()
       .setColor("RANDOM")
       .setAuthor({
         name: `${
@@ -366,7 +363,7 @@ module.exports = async (input) => {
       return;
     }
 
-    const thinkingEmbed = new MessageEmbed()
+    const thinkingEmbed = new EmbedBuilder()
       .setColor("RANDOM")
       .setAuthor({
         name: `${
@@ -399,7 +396,7 @@ module.exports = async (input) => {
       }
     } else if (gameInteraction.customId === "stop") {
       isPlaying.delete(inputData.author.id);
-      const stopEmbed = new MessageEmbed()
+      const stopEmbed = new EmbedBuilder()
         .setColor("RANDOM")
         .setAuthor({
           name: `${
