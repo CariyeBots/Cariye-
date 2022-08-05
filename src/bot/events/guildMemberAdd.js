@@ -1,6 +1,6 @@
 const { Listener } = require("gcommands")
 const Schema = require("../models/welcomeSchema.js");
-const { MessageEmbed } = require("discord.js")
+const { EmbedBuilder } = require("discord.js")
 
 new Listener({
   name: "guildMemberAdd",
@@ -12,12 +12,12 @@ new Listener({
 				if (data.Channel === '0') return;
 				
 				const channel = member.guild.channels.cache.get(data.Channel);
-				const welcome = new MessageEmbed()
+				const welcome = new EmbedBuilder()
 					.setAuthor({
 						name: `${member.user.username} Welcome to the ${member.guild.name}`,
 						iconUrl: member.user.displayAvatarURL({ dynamic: true }) || ""
 					})
-					.setColor("RANDOM")
+					.setColor("Random")
       		.setDescription(data.WMessage)
       		.setThumbnail("https://media1.giphy.com/media/l4JyOCNEfXvVYEqB2/giphy.gif")
 					.setTimestamp()
