@@ -1,5 +1,5 @@
 const { Command, CommandType, Argument, ArgumentType } = require('gcommands');
-const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
 const Genius = require("genius-lyrics");
 const Client = new Genius.Client(process.env.gtoken);
 const ProgressBar = require('../structures/ProgressBar');
@@ -8,56 +8,56 @@ const Player = require('../structures/Music/Player');
 const { isUrl, search, getVideo } = require('../structures/Utils');
 
 const generateRow = (disabled = null) => {
-  const enable = new MessageButton()
+  const enable = new ButtonBuilder()
     .setLabel("Enable")
-    .setStyle("SUCCESS")
+    .setStyle(ButtonStyle.Success)
     .setCustomId("enableLoop")
     .setDisabled(disabled ?? false);
     
-  const disable = new MessageButton()
+  const disable = new ButtonBuilder()
     .setLabel("Disable")
-    .setStyle("DANGER")
+    .setStyle(ButtonStyle.Danger)
     .setCustomId("disableLoop")
     .setDisabled(disabled ?? false);
 
-  const cancel = new MessageButton()
+  const cancel = new ButtonBuilder()
     .setLabel("Cancel")
-    .setStyle("SECONDARY")
+    .setStyle(ButtonStyle.Secondary)
     .setCustomId("loopCancel")
     .setDisabled(disabled ?? false);
 
-  const row = new MessageActionRow();
+  const row = new ActionRowBuilder();
   row.addComponents([enable, disable, cancel]);
 
   return [row];
 }
 
 const genRow = (page, pages, isEmpty, disable) => {
-  const pageL = new MessageButton()
+  const pageL = new ButtonBuilder()
     .setLabel("Previous Page")
-    .setStyle("SECONDARY")
+    .setStyle(ButtonStyle.Secondary)
     .setCustomId("pageL")
     .setDisabled((page === 0) || disable);
 
-  const pageR = new MessageButton()
+  const pageR = new ButtonBuilder()
     .setLabel("Next Page")
-    .setStyle("SECONDARY")
+    .setStyle(ButtonStyle.Secondary)
     .setCustomId("pageR")
     .setDisabled((page === pages.length - 1) || disable);
 
-  const skip = new MessageButton()
+  const skip = new ButtonBuilder()
     .setLabel("Skip")
-    .setStyle("SECONDARY")
+    .setStyle(ButtonStyle.Secondary)
     .setCustomId("skip")
     .setDisabled((isEmpty) || disable);
 
-  const cancel = new MessageButton()
+  const cancel = new ButtonBuilder()
     .setLabel("Cancel")
-    .setStyle("DANGER")
+    .setStyle(ButtonStyle.Danger)
     .setCustomId("cancel")
     .setDisabled(disable);
 
-  const buttonRow = new MessageActionRow();
+  const buttonRow = new ActionRowBuilder();
   buttonRow.addComponents([pageL, pageR, skip, cancel]);
 
   return [buttonRow];
@@ -92,7 +92,12 @@ new Command({
       		name: 'query',
       		description: 'Query for search',
       		type: ArgumentType.STRING,
-      		required: true
+      		required: true,
+					run: async(ctx) => {
+        		const query = ctx.value || 'Never gonna give you up';
+        		const videos = await search(query, 15);
+        		ctx.respond(videos);
+      		}
     		}),
   		],
 		}),
@@ -175,10 +180,10 @@ new Command({
       	})
     	}
 
-    	let embed = new MessageEmbed()
+    	let embed = new EmbedBuilder()
       	.setAuthor({ name: `${q}'s Lyrics` })
       	.setFooter({ text: `From ${client.queue.get(guild.id).songs[0].channel.name}` })
-      	.setColor("RANDOM")
+      	.setColor("Random")
       	.setThumbnail(client.queue.get(guild.id).songs[0].thumbnail.url)
 
     	if(lyrics.length > 4096) {
@@ -199,22 +204,22 @@ new Command({
     	const time = queue.connection.state.subscription.player.state.resource.playbackDuration;
     	const total = song.duration;
 
-    	const embed = new MessageEmbed()
+    	const embed = new EmbedBuilder()
       	.setAuthor({ name: 'Now Playing' })
       	.setTitle(song.title)
       	.setThumbnail(song.thumbnail.url)
-				.setColor('RANDOM');
+				.setColor('Random');
 
     	if (song.live) {
-      	embed.addField('Time', `:red_circle: **LIVE**`.toString());
+      	embed.addFields([ { name: 'Time', value: `:red_circle: **LIVE**`.toString() } ]);
     	} else {
-      	embed.addField('Time', `${new ProgressBar(time / total, 15, client, false).toEmoji()}\n**${new FormatTime(Math.floor(time / 1000))} / ${new FormatTime(Math.floor(total / 1000))} - ${new FormatTime(Math.floor((total - time) / 1000))} left (${Math.floor((time / total) * 100)}%)**`.toString());
+      	embed.addFields([ { name: 'Time', value: `${new ProgressBar(time / total, 15, client, false).toEmoji()}\n**${new FormatTime(Math.floor(time / 1000))} / ${new FormatTime(Math.floor(total / 1000))} - ${new FormatTime(Math.floor((total - time) / 1000))} left (${Math.floor((time / total) * 100)}%)**`.toString() } ]);
     	}
 
-    	embed.addField('Author', song.channel.name, true);
+    	embed.addFields([ { name: 'Author', value: song.channel.name, inline: true } ]);
 
-    	if (song.views) embed.addField('Views', song.views.toLocaleString('en-US'), true);
-    	if (song.playlist) embed.addField('Playlist', `[${song.playlist.name}](${song.playlist.url})`.toString(), true);
+    	if (song.views) embed.addFields([ { name: 'Views', value: song.views.toLocaleString('en-US'), inline: true } ]);
+    	if (song.playlist) embed.addFields([ { name: 'Playlist', value: `[${song.playlist.name}](${song.playlist.url})`.toString(), inline: true } ]);
 
     	return reply({
       	embeds: [embed]
@@ -236,16 +241,81 @@ new Command({
 
     	for(const video of videos) await Player.play(client, guild.id, member.voice.channel.id, video);
 
-    	interaction.editReply({
-      	embeds: [
-        	new MessageEmbed()
-          	.setAuthor({ name: 'Play' })
-          	.setDescription(`**Requested by**: ${member.user.tag}\n**Requested**: ${videos.length} song(s)\n\n${videos.map((video, i) => { i++; return `\`${i}.\` ${video.title} - ${video.channel.name}` }).slice(0, 10).join('\n')}\nAnd more...`)
-          	.setColor("RANDOM")
-          	.setFooter({ text: member.user.tag, iconURL: member.user.displayAvatarURL({ dynamic: true }) })
-          	.setTimestamp()
-      	]
-    	});
+			if (queue) {
+				if (videos.length <= 10) {
+					if (videos.length = 1) {
+						interaction.editReply({
+      				embeds: [
+        				new EmbedBuilder()
+          			.setAuthor({ name: 'Added to Queue' })
+          			.setDescription(`**Requested**: ${videos.length} song\n\n${videos.map((video, i) => { i++; return `\`${i}.\` ${video.title} - ${video.channel.name}` }).slice(0, 10).join('\n')}`)
+          			.setColor("Random")
+          			.setFooter({ text: `Requested by: ${member.user.tag}`, iconURL: member.user.displayAvatarURL({ dynamic: true }) })
+          			.setTimestamp()
+      				]
+    				});
+					} else {
+						interaction.editReply({
+      				embeds: [
+        				new EmbedBuilder()
+          			.setAuthor({ name: 'Added to Queue' })
+          			.setDescription(`**Requested**: ${videos.length} songs\n\n${videos.map((video, i) => { i++; return `\`${i}.\` ${video.title} - ${video.channel.name}` }).slice(0, 10).join('\n')}`)
+          			.setColor("Random")
+          			.setFooter({ text: `Requested by: ${member.user.tag}`, iconURL: member.user.displayAvatarURL({ dynamic: true }) })
+          			.setTimestamp()
+      				]
+    				});
+					}
+				} else {
+					interaction.editReply({
+      			embeds: [
+        			new EmbedBuilder()
+          		.setAuthor({ name: 'Added to Queue' })
+          		.setDescription(`**Requested**: ${videos.length} songs\n\n${videos.map((video, i) => { i++; return `\`${i}.\` ${video.title} - ${video.channel.name}` }).slice(0, 10).join('\n')}\nAnd more...`)
+          		.setColor("Random")
+          		.setFooter({ text: `Requested by: ${member.user.tag}`, iconURL: member.user.displayAvatarURL({ dynamic: true }) })
+          		.setTimestamp()
+      			]
+    			});
+				}
+			} else {
+				if (videos.length <= 10) {
+					if (videos.length = 1) {
+						interaction.editReply({
+      				embeds: [
+        				new EmbedBuilder()
+          			.setAuthor({ name: 'Added to Queue' })
+          			.setDescription(`**Requested**: ${videos.length} song\n\n${videos.map((video, i) => { i++; return `\`${i}.\` ${video.title} - ${video.channel.name}` }).slice(0, 10).join('\n')}`)
+          			.setColor("Random")
+          			.setFooter({ text: `Requested by: ${member.user.tag}`, iconURL: member.user.displayAvatarURL({ dynamic: true }) })
+          			.setTimestamp()
+      				]
+    				});
+					} else {
+						interaction.editReply({
+      				embeds: [
+        				new EmbedBuilder()
+          			.setAuthor({ name: 'Added to Queue' })
+          			.setDescription(`**Requested**: ${videos.length} songs\n\n${videos.map((video, i) => { i++; return `\`${i}.\` ${video.title} - ${video.channel.name}` }).slice(0, 10).join('\n')}`)
+          			.setColor("Random")
+          			.setFooter({ text: `Requested by: ${member.user.tag}`, iconURL: member.user.displayAvatarURL({ dynamic: true }) })
+          			.setTimestamp()
+      				]
+    				});
+					}
+				} else {
+					interaction.editReply({
+      			embeds: [
+        			new EmbedBuilder()
+          		.setAuthor({ name: 'Playing Now' })
+          		.setDescription(`**Requested**: ${videos.length} song(s)\n\n${videos.map((video, i) => { i++; return `\`${i}.\` ${video.title} - ${video.channel.name}` }).slice(0, 10).join('\n')}\nAnd more...`)
+          		.setColor("Random")
+          		.setFooter({ text: `Requested by: ${member.user.tag}`, iconURL: member.user.displayAvatarURL({ dynamic: true }) })
+          		.setTimestamp()
+      			]
+    			});
+				}
+			}
 		}
 
 		if (sub === 'queue') {
@@ -292,11 +362,11 @@ new Command({
 
     	const message = await reply({
       	embeds: [
-        	new MessageEmbed()
+        	new EmbedBuilder()
           	.setAuthor({ name: 'Queue'})
           	.setTitle(`Page ${page}`)
           	.setDescription(`\`\`\`nim\n${pages[page].join('\n')}\`\`\``)
-          	.setColor('RANDOM'),
+          	.setColor('Random'),
       	],
       	components: genRow(page, pages, isEmpty, false),
       	ephemeral: true,
@@ -309,11 +379,11 @@ new Command({
     	collector.on('end', () => {
       	interaction.editReply({
        		embeds: [
-          	new MessageEmbed()
+          	new EmbedBuilder()
             	.setAuthor({ name: 'Queue' })
             	.setTitle(`Page ${page}`)
             	.setDescription(`\`\`\`nim\n${pages[page].join('\n')}\`\`\``)
-            	.setColor('RANDOM'),
+            	.setColor('Random'),
         	],
         	components: genRow(page, pages, isEmpty, true),
         	ephemeral: true,
@@ -330,11 +400,11 @@ new Command({
       	if (collected.customId === 'cancel') {
         	interaction.editReply({
           	embeds: [
-            	new MessageEmbed()
+            	new EmbedBuilder()
               	.setAuthor({ name: 'Queue' })
               	.setTitle(`Page ${page}`)
               	.setDescription(`\`\`\`nim\n${pages[page].join('\n')}\`\`\``)
-              	.setColor('RANDOM'),
+              	.setColor('Random'),
           	],
           	components: genRow(page, pages, isEmpty, true),
           	ephemeral: true,
@@ -346,11 +416,11 @@ new Command({
 
       	interaction.editReply({
         	embeds: [
-          	new MessageEmbed()
+          	new EmbedBuilder()
             	.setAuthor({ name: 'Queue' })
             	.setTitle(`Page ${page}`)
             	.setDescription(`\`\`\`nim\n${pages[page].join('\n')}\`\`\``)
-            	.setColor('RANDOM'),
+            	.setColor('Random'),
         	],
         	components: genRow(page, pages, isEmpty, false),
         	ephemeral: true,
