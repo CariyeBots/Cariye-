@@ -1,17 +1,26 @@
 const { MongoDBProvider } = require('gcommands/dist/providers/MongoDBProvider');
-const { GClient, Plugins, Logger, Command, Component } = require("gcommands");
 const { Collection, GatewayIntentBits, Partials } = require('discord.js');
+const { GClient, Logger, Command, Component } = require("gcommands");
 const { readFileSync } = require('fs');
 const mongoose = require("mongoose");
 const { join } = require('path');
-require('@gcommands/plugin-language').default({ defaultLanguage: 'en-GB', languageText: JSON.parse(readFileSync(`${__dirname}/responses.json`, 'utf-8')) });
-require('@gcommands/plugin-votes').default({ type: 'TOP.GG', apiKeys: process.env.topgg, serverAuthKey: process.env.topggwh });
+require('@gcommands/plugin-language')
+	.default({
+		defaultLanguage: 'en-GB',
+		languageText: JSON.parse(readFileSync(`${__dirname}/responses.json`, 'utf-8'))
+	});
+require('@gcommands/plugin-votes')
+	.default({
+		type: 'TOP.GG',
+		apiKeys: process.env.topgg,
+		serverAuthKey: process.env.topggwh
+	});
 require('dotenv').config();
+require("../keep_alive.js");
 
-Plugins.search(__dirname);
+Logger.setLevel(Logger.TRACE);
 
 Command.setDefaults({ cooldown: '5s' });
-
 Component.setDefaults({
 	onError: (ctx, error) => {
     console.log(error)
@@ -19,20 +28,18 @@ Component.setDefaults({
 	}
 });
 
-Logger.setLevel(Logger.TRACE);
-
 const client = new GClient({
   intents: [
     GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildVoiceStates,
+		GatewayIntentBits.GuildMembers,
 		GatewayIntentBits.GuildBans,
 		GatewayIntentBits.GuildEmojisAndStickers,
-    GatewayIntentBits.GuildMembers,
-    GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.DirectMessages,
-		GatewayIntentBits.GuildMessageReactions,
+    GatewayIntentBits.GuildIntegrations,
     GatewayIntentBits.GuildInvites,
-    GatewayIntentBits.GuildIntegrations
+    GatewayIntentBits.GuildVoiceStates,
+    GatewayIntentBits.GuildMessages,
+		GatewayIntentBits.GuildMessageReactions,
+    GatewayIntentBits.DirectMessages
   ],
   dirs: [
     join(__dirname, 'commands'),
@@ -42,23 +49,32 @@ const client = new GClient({
   database: new MongoDBProvider(process.env.mongodb_uri),
 	messageSupport: true,
 	messagePrefix: '!',
-	partials: [Partials.Message, Partials.Channel, Partials.Reaction],
+	partials: [
+		Partials.Message, Partials.Channel,
+		Partials.Reaction, Partials.User,
+		Partials.Role, Partials.GuildMember,
+		Partials.GuildInvites, Partials.ManageGuild
+	],
 });
 
-client.queue = new Collection();
+client.config = require('./config.js');
 client.db = new Collection();
+client.queue = new Collection();
 
-mongoose.connect(process.env.mongodb_uri).then(console.log("Success - Connected to MongoDatabase"));
+require('./structures/gwManager.js')(client);
+require('./structures/gwEventsHandler.js')(client);
 
-client.rest.on('error', console.log);
+mongoose
+	.connect(process.env.mongodb_uri)
+	.then(console.log("Success - Connected to MongoDatabase"));
+
+client.on('error', console.log);
+client.on('warn', console.log);
 client.rest.on('rateLimited', console.log);
-client.rest.on('warn', console.log);
 
 client.login(process.env.token);
 
 /*
-* I'll love the light for it shows me the way, yet I'll endure the darkness because it shows me the stars.
-*
 * @AUTHOR
 * Whattyu
 */
