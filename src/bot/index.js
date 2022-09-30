@@ -16,7 +16,7 @@ require('@gcommands/plugin-votes')
 		serverAuthKey: process.env.topggwh
 	});
 require('dotenv').config();
-require("../keep_alive.js");
+require("../keep_alive.js")
 
 Logger.setLevel(Logger.TRACE);
 
