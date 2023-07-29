@@ -5,7 +5,7 @@ const ms = require('ms');
 
 new Command({
 	name: 'slowmode',
-	description: 'enable or disable slowmode for channel',
+	description: 'Enable or disable slowmode for channel',
 	defaultMemberPermissions: ['ManageChannels'],
 	inhibitors: [
 		new MemberPermissions({
